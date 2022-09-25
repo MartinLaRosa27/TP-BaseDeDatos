@@ -2,29 +2,29 @@ CREATE DATABASE TP;
 USE TP;
 
 CREATE TABLE empleado(
-	id_empleado INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	id_empleado INTEGER NOT NULL PRIMARY KEY,
 	nombre VARCHAR(90) NOT NULL,
 	apellido VARCHAR(90) NOT NULL
 );
 
 CREATE TABLE rol(
-	id_rol INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	id_rol INTEGER  NOT NULL PRIMARY KEY,
 	descripcion VARCHAR (255) NOT NULL,
 	limite_horario INTEGER
 );
 
 CREATE TABLE cliente(
-	id_cliente INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	id_cliente INTEGER  NOT NULL PRIMARY KEY,
 	razon_social VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE proyecto(
-	id_proyecto INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	id_proyecto INTEGER  NOT NULL PRIMARY KEY,
 	descripcion VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE asignacion(
-	id_asignacion INTEGER AUTO_INCREMENT NOT NULL,
+	id_asignacion INTEGER  NOT NULL,
 	id_empleado INTEGER NOT NULL,
 	id_rol INTEGER NOT NULL,
 	id_proyecto INTEGER NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE asignacion(
 );
 
 CREATE TABLE rendicion_hora(
-	id_rendicion INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	id_rendicion INTEGER  NOT NULL PRIMARY KEY,
 	id_asignacion INTEGER NOT NULL,
 	id_rol INTEGER NOT NULL,
 	fecha_rendicion DATE NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE rendicion_hora(
 );
 
 CREATE TABLE liquidacion(
-	id_liquidacion INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	id_liquidacion INTEGER NOT NULL PRIMARY KEY,
 	fecha_liquidacion DATETIME NOT NULL,
 	proyecto_descripcion VARCHAR(255) NOT NULL,
 	cliente VARCHAR(255) NOT NULL,
@@ -56,3 +56,10 @@ CREATE TABLE liquidacion(
 	cant_empleados INTEGER NOT NULL,
 	solicitante INTEGER NOT NULL
 );
+
+CREATE TABLE numerador(
+tabla VARCHAR (255) NOT NULL PRIMARY KEY,
+siguiente INTEGER DEFAULT 1
+);
+INSERT INTO numerador(tabla)
+VALUES("empleado"), ("rol"), ("cliente"), ("proyecto"), ("asignacion"), ("rendicion_hora"), ("liquidacion");
